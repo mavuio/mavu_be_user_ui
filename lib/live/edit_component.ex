@@ -6,8 +6,13 @@ defmodule MavuBeUserUi.Live.EditComponent do
   alias MyApp.BeAccounts.BeUser
   alias MyApp.Repo
 
-  def accounts_module(assigns), do: assigns[:context][:be_user_ui_conf][:accounts_module]
-  def be_user_module(assigns), do: assigns[:context][:be_user_ui_conf][:be_user_module]
+  import MavuBeUserUi, only: [get_conf_val: 2]
+
+  def accounts_module(assigns),
+    do: get_conf_val(assigns[:context][:be_user_ui_conf], :accounts_module)
+
+  def be_user_module(assigns),
+    do: get_conf_val(assigns[:context][:be_user_ui_conf], :be_user_module)
 
   @impl true
   def update(assigns, socket) do

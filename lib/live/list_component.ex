@@ -5,7 +5,10 @@ defmodule MavuBeUserUi.Live.ListComponent do
   alias MyApp.Repo
   require Ecto.Query
 
-  def accounts_module(assigns), do: assigns[:context][:be_user_ui_conf][:accounts_module]
+  import MavuBeUserUi, only: [get_conf_val: 2]
+
+  def accounts_module(assigns),
+    do: get_conf_val(assigns[:context][:be_user_ui_conf], :accounts_module)
 
   @impl true
   def update(%{id: id, context: context} = assigns, socket) do
