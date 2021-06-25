@@ -1,7 +1,7 @@
 defmodule MavuBeUserUi.MixProject do
   use Mix.Project
 
-  @version "0.1.2"
+  @version "0.1.3"
   def project do
     [
       app: :mavu_be_user_ui,
@@ -32,6 +32,9 @@ defmodule MavuBeUserUi.MixProject do
       {:phoenix_html, ">= 2.0.0"},
       {:phoenix, ">= 1.5.0"},
       {:phoenix_live_view, ">= 0.15.7"},
+      {:mavu_form, "~> 0.1.0"},
+      {:mavu_buckets, "~> 0.1.0"},
+      {:mavu_content, "~> 0.1.0"},
       {:ecto, ">= 3.0.0"},
       {:ex_doc, ">= 0.0.0", only: :dev, runtime: false}
     ]
