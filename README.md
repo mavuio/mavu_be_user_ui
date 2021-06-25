@@ -1,21 +1,9 @@
-# Eigenart
+# Mavu Be User Ui
 
-**TODO: Add description**
 
-## Installation
+Phoenix Live-View UI interface based on tailwind and alpinejs
+for generic handling of backend-users.
+to be customized per project
 
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed
-by adding `eigenart` to your list of dependencies in `mix.exs`:
-
-```elixir
-def deps do
-  [
-    {:eigenart, "~> 0.1.0"}
-  ]
-end
-```
-
-Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
-and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
-be found at [https://hexdocs.pm/eigenart](https://hexdocs.pm/eigenart).
+No Documentation yet
 

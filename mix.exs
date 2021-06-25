@@ -1,7 +1,7 @@
 defmodule MavuBeUserUi.MixProject do
   use Mix.Project
 
-  @version "0.1.1"
+  @version "0.1.2"
   def project do
     [
       app: :mavu_be_user_ui,
@@ -38,7 +38,7 @@ defmodule MavuBeUserUi.MixProject do
   end
 
   defp description() do
-    "MavuBeUserUi: Rodent - Management for mavu_* projects"
+    "MavuBeUserUi: Backend-User-UI for mavu_* projects"
   end
 
   defp package() do
