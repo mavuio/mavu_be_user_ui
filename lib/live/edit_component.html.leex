@@ -1,4 +1,18 @@
 <div id="<%= @id %>" class="be_userlist_edit_component">
+  <%= if @local_edit_component do %>
+
+  <%= live_component @local_edit_component,
+                  context: @context,
+                  base_path: @base_path,
+                  changeset: @changeset,
+                  parent_id: @id,
+                  rec_id: @rec_id
+    %>
+
+
+  <% else %>
+
+
   <%= live_component MyAppBe.Live.Components.CenteredModalComponent, phx_target: "##{@id}",  class: "sm:max-w-[90vw] sm:w-[400px] w-full" do %>
   <div class="my-8 be_userlist_component_inner">
 
@@ -19,3 +33,5 @@
 
     </form>
   </div> <% end %> </div>
+<% end %>
+</div>

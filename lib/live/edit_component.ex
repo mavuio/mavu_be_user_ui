@@ -14,6 +14,9 @@ defmodule MavuBeUserUi.Live.EditComponent do
   def be_user_module(assigns),
     do: get_conf_val(assigns[:context][:be_user_ui_conf], :be_user_module)
 
+  def local_edit_component(assigns),
+    do: get_conf_val(assigns[:context][:be_user_ui_conf], :local_edit_component)
+
   @impl true
   def update(assigns, socket) do
     rec =
@@ -28,6 +31,7 @@ defmodule MavuBeUserUi.Live.EditComponent do
       |> assign(assigns)
       |> assign(
         rec: rec,
+        local_edit_component: local_edit_component(assigns),
         changeset: get_changeset(rec, %{}, assigns)
       )
     }
