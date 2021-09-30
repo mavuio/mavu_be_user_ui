@@ -3,7 +3,7 @@ defmodule MavuBeUserUi.Live.EditComponent do
   use MavuBeUserUiWeb, :live_component
 
   # alias MyApp.BeAccounts
-  alias MyApp.BeAccounts.BeUser
+  # alias MyApp.BeAccounts.BeUser
   alias MyApp.Repo
 
   import MavuBeUserUi, only: [get_conf_val: 2]
@@ -22,7 +22,7 @@ defmodule MavuBeUserUi.Live.EditComponent do
     rec =
       case assigns.rec_id do
         "new" -> generate_default_rec(assigns)
-        rec_id -> accounts_module(assigns).get_be_user!(MavuUtils.to_int(rec_id))
+        rec_id -> accounts_module(assigns).get_user!(MavuUtils.to_int(rec_id))
       end
 
     {
@@ -73,7 +73,7 @@ defmodule MavuBeUserUi.Live.EditComponent do
       {:ok, _reservation} ->
         {:noreply,
          socket
-         |> put_flash(:info, "BeUserlist updated successfully")
+         |> put_flash(:info, "Userlist updated successfully")
          |> push_patch(to: return_path(socket))}
 
       {:error, %Ecto.Changeset{} = changeset} ->
