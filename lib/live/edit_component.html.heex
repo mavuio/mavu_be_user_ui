@@ -1,39 +1,43 @@
 <section id={"#{ @id }"} class="be_userlist_edit_component">
   <%= if @local_edit_component do %>
 
-  <%= live_component @local_edit_component,
-                  context: @context,
-                  base_path: @base_path,
-                  changeset: @changeset,
-                  parent_id: @id,
-                  rec_id: @rec_id
-    %>
+  <.live_component module={@local_edit_component}
+                  context={@context}
+                  base_path={@base_path}
+                  changeset={@changeset}
+                  parent_id={@id}
+                  rec_id={@rec_id}
+                  id="edit be_user"
+    />
 
 
   <% else %>
 
 
-  <%= live_component MyAppBe.Live.Components.CenteredModalComponent, phx_target: "##{@id}",  class: "sm:max-w-[90vw] sm:w-[400px] w-full" do %>
-  <div class="my-8 be_userlist_component_inner">
+  <.live_component module={MyAppBe.Live.Components.CenteredModalComponent} phx_target={"##{@id}"}
+    class="sm:max-w-[90vw] sm:w-[400px] w-full"
+    id="edit be_user"
+    >
+    <div class="my-8 be_userlist_component_inner">
 
 
 
-    <.form let={f} for={@changeset} url="#" as={:fdata} phx-change={:validate} phx-submit={:save} phx-target="##{@id}">
+      <.form let={f} for={@changeset} url="#" as={:fdata} phx-change={:validate} phx-submit={:save}
+        phx-target={"##{@id}"}>
 
 
-    <%= input f, :email , label: "Email" %>
+        <%= input f, :email , label: "Email" %>
 
-    <%= input f, :is_active ,using: :checkbox, label: "Is Active" %>
+        <%= input f, :is_active ,using: :checkbox, label: "Is Active" %>
 
 
-    <div class="my-4 text-right">
-      <%= content_tag :button, "OK",class: "btn-outline-primary px-10" %>
+        <div class="my-4 text-right">
+          <%= content_tag :button, "OK",class: "btn-outline-primary px-10" %>
+        </div>
+
+
+      </.form>
     </div>
-
-
-    </.form>
-  </div> 
-  <% end %> 
-
-<% end %>
+  </.live_component>
+  <% end %>
 </section>
