@@ -32,9 +32,19 @@ defmodule MavuBeUserUi.Live.EditComponent do
       |> assign(
         rec: rec,
         local_edit_component: local_edit_component(assigns),
+        init_password_link: nil,
         changeset: get_changeset(rec, %{}, assigns)
       )
     }
+  end
+
+  @impl true
+  def handle_event("create_init_password_link", _, socket) do
+    {:noreply,
+     assign(socket,
+       init_password_link:
+         accounts_module(socket.assigns).get_init_password_link(socket.assigns.rec)
+     )}
   end
 
   @impl true
