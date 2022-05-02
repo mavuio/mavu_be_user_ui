@@ -71,8 +71,8 @@ defmodule MavuBeUserUi.Live.ListComponent do
   end
 
   def handle_event("delete_item", %{"id" => rec_id}, socket) do
-    accounts_module(socket.assigns).get_user!(!MavuUtils.to_int(rec_id))
-    |> Repo.delete!()
+    accounts_module(socket.assigns).get_user!(MavuUtils.to_int(rec_id))
+    |> Repo.delete()
 
     {:noreply,
      socket
