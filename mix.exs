@@ -1,7 +1,7 @@
 defmodule MavuBeUserUi.MixProject do
   use Mix.Project
 
-  @version "0.1.11"
+  @version "0.1.12"
   def project do
     [
       app: :mavu_be_user_ui,
@@ -31,7 +31,7 @@ defmodule MavuBeUserUi.MixProject do
       # {:dep_from_git, git: "https://github.com/elixir-lang/my_dep.git", tag: "0.1.0"}
       {:phoenix_html, ">= 2.0.0"},
       {:phoenix, ">= 1.5.0"},
-      {:phoenix_live_view, "0.17.2"},
+      {:phoenix_live_view, ">= 0.17.2"},
       {:mavu_form, "~> 0.1.0"},
       {:mavu_buckets, "~> 0.1.0"},
       {:mavu_content, "~> 0.1.0"},
