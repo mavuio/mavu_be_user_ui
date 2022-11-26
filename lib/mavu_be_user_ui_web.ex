@@ -17,31 +17,6 @@ defmodule MavuBeUserUiWeb do
   and import those modules here.
   """
 
-  def controller do
-    quote do
-      use Phoenix.Controller, namespace: MyAppBe
-
-      import Plug.Conn
-      # import MyAppBe.Gettext
-      alias MyAppWeb.Router.Helpers, as: Routes
-    end
-  end
-
-  def view do
-    quote do
-      use Phoenix.View,
-        root: "lib/my_app_be/templates",
-        namespace: MyAppBe
-
-      # Import convenience functions from controllers
-      import Phoenix.Controller,
-        only: [get_flash: 1, get_flash: 2, view_module: 1, view_template: 1]
-
-      # Include shared imports and aliases for views
-      unquote(view_helpers())
-    end
-  end
-
   def live_view do
     quote do
       use Phoenix.LiveView,
@@ -85,7 +60,7 @@ defmodule MavuBeUserUiWeb do
       import Phoenix.LiveView.Helpers
 
       # Import basic rendering functionality (render, render_layout, etc)
-      import Phoenix.View
+      # import Phoenix.View
 
       import MavuBeUserUi.ErrorHelpers
       # import MyAppBe.Gettext

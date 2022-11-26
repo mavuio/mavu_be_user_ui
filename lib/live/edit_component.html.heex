@@ -15,10 +15,8 @@
   <% else %>
 
 
-  <.live_component module={MyAppBe.Live.Components.CenteredModalComponent} phx_target={"##{@id}"}
-    class="sm:max-w-[90vw] sm:w-[400px] w-full"
-    id="edit be_user"
-    >
+  <MyAppBe.CoreComponents.modal id="edit_be_user" show={true} on_cancel={JS.patch(@base_path)}>
+
     <div class="my-8 be_userlist_component_inner">
 
 
@@ -39,7 +37,7 @@
 
         <div  class="my-4">
         <%= if @init_password_link do %>
-          <a href={@init_password_link}><%= @init_password_link %></a>
+          <a href={@init_password_link} class="truncate overflow-hidden block underline text-xs"><%= @init_password_link %></a>
         <% else %>
           <a href="#" phx-click="create_init_password_link" phx-target={"##{@id}"}>➜ create init-password-link</a>
         <% end %>
@@ -49,6 +47,6 @@
 
       </.form>
     </div>
-  </.live_component>
-  <% end %>
+  </MyAppBe.CoreComponents.modal>
+<% end %>
 </section>

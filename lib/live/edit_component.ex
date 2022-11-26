@@ -6,6 +6,8 @@ defmodule MavuBeUserUi.Live.EditComponent do
   # alias MyApp.BeAccounts.BeUser
   alias MyApp.Repo
 
+  alias Phoenix.LiveView.JS
+
   import MavuBeUserUi, only: [get_conf_val: 2]
 
   def accounts_module(assigns),
@@ -103,7 +105,7 @@ defmodule MavuBeUserUi.Live.EditComponent do
   end
 
   def return_path(socket) do
-    socket.assigns.base_path.(%{})
+    socket.assigns.base_path
   end
 
   def generate_default_rec(assigns) when is_map(assigns) do

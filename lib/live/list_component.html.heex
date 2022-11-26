@@ -30,14 +30,18 @@
                   <% end %>
                   <td class="flex items-center h-12 space-x-3 text-gray-500">
 
-                    <%= link  tw_icon(&Heroicons.Outline.pencil/1, "w-5 h-5"), to: "#", class: "inline-block", phx_click: "edit_item", phx_value_id: row.id, phx_target: @myself %>
+                
 
-                    <%= link  tw_icon(&Heroicons.Outline.trash/1, "w-5 h-5"), to: "#",
-                    class: "inline-block",
-                    phx_click: "delete_item",
-                    phx_value_id: row.id,
-                    phx_target: @myself,
-                    data: [confirm: "Are you sure you want to delete item '#{row.id}' ?"] %>
+                    <.link class="inline-block" phx_click="edit_item" phx_value_id={row.id} phx_target={@myself}><Heroicons.pencil outline class="w-5 h-5" /></.link>
+
+           
+
+                    <.link 
+                    phx_click="delete_item"
+                    phx_value_id={row.id}
+                    phx_target={@myself}
+                    data={[confirm: "Are you sure you want to delete item '#{row.id}' ?"]}
+                    class="inline-block"><Heroicons.trash outline class="w-5 h-5 " /></.link>
 
                   </td>
                 </tr>
@@ -47,7 +51,8 @@
           </div>
 
           <div class="mt-8 mb-4">
-            <%= link tw_icon(&Heroicons.Outline.plus/1,"w-8 h-8 text-gray-400 hover:text-primary-500 inline-block"), to: "#", class: "text-gray-400", phx_click: "add_item", phx_target: @myself %>
+
+            <.link class={"text-gray-400"} phx-click="add_item" phx-target={@myself} ><Heroicons.plus outline class="w-8 h-8 text-gray-400 hover:text-primary-500 inline-block" /></.link>
           </div>
         </div>
       </div>

@@ -35,18 +35,6 @@ defmodule MavuBeUserUi.BackendHelpers do
     end)
   end
 
-  def tw_icon(icon_fun, size) when is_integer(size) and is_function(icon_fun, 1) do
-    icon_fun.(class: "w-#{size} h-#{size}") |> Phoenix.HTML.raw()
-  end
-
-  def tw_icon(icon_fun, class) when is_binary(class) and is_function(icon_fun, 1) do
-    icon_fun.(class: class) |> Phoenix.HTML.raw()
-  end
-
-  def tw_icon(icon_fun, opts) when is_list(opts) and is_function(icon_fun, 1) do
-    icon_fun.(opts) |> Phoenix.HTML.raw()
-  end
-
   defdelegate local_date(utc_date), to: MyAppWeb.MyHelpers
 
   defdelegate format_date(utc_date), to: MyAppWeb.MyHelpers

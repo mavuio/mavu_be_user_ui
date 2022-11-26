@@ -7,6 +7,8 @@ defmodule MavuBeUserUi.Live.ListComponent do
 
   import MavuBeUserUi, only: [get_conf_val: 2]
 
+  use Phoenix.VerifiedRoutes, endpoint: MyAppBe.Endpoint, router: MyAppWeb.Router
+
   def accounts_module(assigns),
     do: get_conf_val(assigns[:context][:be_user_ui_conf], :accounts_module)
 
@@ -61,13 +63,17 @@ defmodule MavuBeUserUi.Live.ListComponent do
   def handle_event("add_item", _msg, socket) do
     {:noreply,
      socket
-     |> push_patch(to: socket.assigns.base_path.(%{"rec" => "new"}))}
+     |> push_patch(
+       to: unverified_path(socket, MyAppWeb.Router, socket.assigns.base_path, %{"rec" => "new"})
+     )}
   end
 
   def handle_event("edit_item", %{"id" => rec_id}, socket) do
     {:noreply,
      socket
-     |> push_patch(to: socket.assigns.base_path.(%{"rec" => rec_id}))}
+     |> push_patch(
+       to: unverified_path(socket, MyAppWeb.Router, socket.assigns.base_path, %{"rec" => rec_id})
+     )}
   end
 
   def handle_event("delete_item", %{"id" => rec_id}, socket) do
@@ -76,7 +82,7 @@ defmodule MavuBeUserUi.Live.ListComponent do
 
     {:noreply,
      socket
-     |> push_redirect(to: socket.assigns.base_path.(%{}))}
+     |> push_redirect(to: socket.assigns.base_path)}
   end
 
   @impl true
