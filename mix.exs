@@ -36,8 +36,7 @@ defmodule MavuBeUserUi.MixProject do
       {:mavu_list, ">= 0.1.0"},
       {:ecto, ">= 3.0.0"},
       {:ex_doc, ">= 0.0.0", only: :dev, runtime: false},
-      {:heroicons, ">= 0.5.0"},
-      {:floki, ">= 0.30"}
+      {:heroicons, ">= 0.5.0"}
     ]
   end
 
