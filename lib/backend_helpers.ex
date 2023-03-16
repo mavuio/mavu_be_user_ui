@@ -34,23 +34,10 @@ defmodule MavuBeUserUi.BackendHelpers do
     end)
   end
 
-  defdelegate local_date(utc_date), to: MyAppWeb.MyHelpers
-
-  defdelegate format_date(utc_date), to: MyAppWeb.MyHelpers
-
-  defdelegate trans(lang_or_params, txt_en, txt_de \\ nil), to: MyAppWeb.MyHelpers
-
-  defdelegate lang_from_params(lang_or_params), to: MyAppWeb.MyHelpers
-
   defdelegate if_empty(val, default_val), to: MavuUtils
   defdelegate if_nil(val, default_val), to: MavuUtils
   defdelegate present?(term), to: MavuUtils
   defdelegate empty?(term), to: MavuUtils
   defdelegate true?(term), to: MavuUtils
   defdelegate false?(term), to: MavuUtils
-
-  # def s(_lang_or_params, _key, default \\ nil, _variables \\ []), do: default
-
-  # defdelegate s(lang_or_params, key, default \\ nil, variables \\ []),
-  # to: MyAppWeb.MyHelpers
 end

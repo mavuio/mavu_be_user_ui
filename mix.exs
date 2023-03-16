@@ -33,9 +33,11 @@ defmodule MavuBeUserUi.MixProject do
       {:phoenix, ">= 1.7.0-rc"},
       {:phoenix_live_view, ">= 0.18.0"},
       {:mavu_form, ">= 0.1.0"},
+      {:mavu_list, ">= 0.1.0"},
       {:ecto, ">= 3.0.0"},
       {:ex_doc, ">= 0.0.0", only: :dev, runtime: false},
-      {:heroicons, ">= 0.5.0"}
+      {:heroicons, ">= 0.5.0"},
+      {:floki, ">= 0.30"}
     ]
   end
 
