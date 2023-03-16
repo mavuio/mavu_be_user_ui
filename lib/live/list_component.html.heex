@@ -32,14 +32,14 @@
 
                 
 
-                    <.link class="inline-block" phx_click="edit_item" phx_value_id={row.id} phx_target={@myself}><Heroicons.pencil outline class="w-5 h-5" /></.link>
+                    <.link class="inline-block" phx-click="edit_item" phx-value-id={row.id} phx-target={@myself}><Heroicons.pencil outline class="w-5 h-5" /></.link>
 
            
 
                     <.link 
-                    phx_click="delete_item"
-                    phx_value_id={row.id}
-                    phx_target={@myself}
+                    phx-click="delete_item"
+                    phx-value-id={row.id}
+                    phx-target={@myself}
                     data={[confirm: "Are you sure you want to delete item '#{row.id}' ?"]}
                     class="inline-block"><Heroicons.trash outline class="w-5 h-5 " /></.link>
 

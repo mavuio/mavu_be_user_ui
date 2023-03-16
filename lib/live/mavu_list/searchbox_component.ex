@@ -2,6 +2,8 @@ defmodule MavuBeUserUi.Live.MavuList.SearchboxComponent do
   @moduledoc false
   use MavuBeUserUiWeb, :live_component
 
+  alias Phoenix.LiveView.JS
+
   @impl true
   def update(%{list: list} = _assigns, socket) do
     socket =
