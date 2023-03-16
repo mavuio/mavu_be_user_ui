@@ -1,52 +1,51 @@
 <section id={"#{ @id }"} class="be_userlist_edit_component">
   <%= if @local_edit_component do %>
-
-  <.live_component module={@local_edit_component}
-                  context={@context}
-                  base_path={@base_path}
-                  changeset={@changeset}
-                  parent_id={@id}
-                  init_password_link={@init_password_link}
-                  rec_id={@rec_id}
-                  id="edit_be_user"
+    <.live_component
+      module={@local_edit_component}
+      context={@context}
+      base_path={@base_path}
+      changeset={@changeset}
+      parent_id={@id}
+      init_password_link={@init_password_link}
+      rec_id={@rec_id}
+      id="edit_be_user"
     />
-
-
   <% else %>
+    <MyAppBe.CoreComponents.modal id="edit_be_user" show={true} on_cancel={JS.patch(@base_path)}>
+      <div class="my-8 be_userlist_component_inner">
+        <.form
+          :let={f}
+          for={@changeset}
+          url="#"
+          as={:fdata}
+          phx-change={:validate}
+          phx-submit={:save}
+          phx-target={"##{@id}"}
+        >
+          <%= input(f, :email, label: "Email") %>
 
+          <%= input(f, :is_active, using: :checkbox, label: "Is Active") %>
 
-  <MyAppBe.CoreComponents.modal id="edit_be_user" show={true} on_cancel={JS.patch(@base_path)}>
+          <div class="my-4 text-right">
+            <%= content_tag(:button, "OK", class: "btn btn-outline px-10") %>
+          </div>
 
-    <div class="my-8 be_userlist_component_inner">
-
-
-
-      <.form let={f} for={@changeset} url="#" as={:fdata} phx-change={:validate} phx-submit={:save}
-        phx-target={"##{@id}"}>
-
-
-        <%= input f, :email , label: "Email" %>
-
-        <%= input f, :is_active ,using: :checkbox, label: "Is Active" %>
-
-
-        <div class="my-4 text-right">
-          <%= content_tag :button, "OK",class: "btn-outline-primary px-10" %>
-        </div>
-        
-
-        <div  class="my-4">
-        <%= if @init_password_link do %>
-          <a href={@init_password_link} class="truncate overflow-hidden block underline text-xs"><%= @init_password_link %></a>
-        <% else %>
-          <a href="#" phx-click="create_init_password_link" phx-target={"##{@id}"}>➜ create init-password-link</a>
-        <% end %>
-        
-        </div>
-
-
-      </.form>
-    </div>
-  </MyAppBe.CoreComponents.modal>
-<% end %>
+          <div class="my-4">
+            <%= if @init_password_link do %>
+              <a
+                href={@init_password_link}
+                class="block overflow-hidden text-xs underline truncate"
+              >
+                <%= @init_password_link %>
+              </a>
+            <% else %>
+              <a href="#" phx-click="create_init_password_link" phx-target={"##{@id}"}>
+                ➜ create init-password-link
+              </a>
+            <% end %>
+          </div>
+        </.form>
+      </div>
+    </MyAppBe.CoreComponents.modal>
+  <% end %>
 </section>

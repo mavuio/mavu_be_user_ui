@@ -20,7 +20,8 @@ defmodule MavuBeUserUiWeb do
   def live_view do
     quote do
       use Phoenix.LiveView,
-        layout: {MyAppBe.BeLayoutView, "be_live.html"}
+        layout: {MyAppBe.BeLayoutView, "be_live.html"},
+        global_prefixes: ["x-"]
 
       unquote(view_helpers())
     end
