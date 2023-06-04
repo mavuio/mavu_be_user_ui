@@ -1,7 +1,7 @@
 defmodule MavuBeUserUi.MixProject do
   use Mix.Project
 
-  @version "0.2.0"
+  @version "0.2.1"
   def project do
     [
       app: :mavu_be_user_ui,
