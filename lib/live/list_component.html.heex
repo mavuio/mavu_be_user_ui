@@ -38,7 +38,7 @@
                         phx-value-id={row.id}
                         phx-target={@myself}
                       >
-                        <.icon name="hero-pencil"  class="w-5 h-5" />
+                        <MyAppBe.MyCoreComponents.icon name="hero-pencil"  class="w-5 h-5" />
                       </.link>
 
                       <.link
@@ -48,7 +48,7 @@
                         data={[confirm: "Are you sure you want to delete item '#{row.id}' ?"]}
                         class="inline-block"
                       >
-                        <.icon name="hero-trash"  class="w-5 h-5 " />
+                        <MyAppBe.MyCoreComponents.icon name="hero-trash"  class="w-5 h-5 " />
                       </.link>
                     </td>
                   </tr>
@@ -59,7 +59,7 @@
 
           <div class="mt-8 mb-4">
             <.link class="text-gray-400" phx-click="add_item" phx-target={@myself}>
-              <.icon
+              <MyAppBe.MyCoreComponents.icon
                 name="hero-plus"
                 outline
                 class="inline-block w-8 h-8 text-gray-400 hover:text-primary-500"

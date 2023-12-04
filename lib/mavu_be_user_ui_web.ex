@@ -63,8 +63,6 @@ defmodule MavuBeUserUiWeb do
       # Import basic rendering functionality (render, render_layout, etc)
       # import Phoenix.View
 
-      import MyAppBe.CoreComponents
-      import MyAppBe.MyCoreComponents
       import MavuBeUserUi.ErrorHelpers
       # import MyAppBe.Gettext
       # alias MyAppWeb.Router.Helpers, as: Routes
