@@ -13,8 +13,8 @@ defmodule MavuBeUserUi.Live.EditComponent do
   def accounts_module(assigns),
     do: get_conf_val(assigns[:context][:be_user_ui_conf], :accounts_module)
 
-  def be_user_module(assigns),
-    do: get_conf_val(assigns[:context][:be_user_ui_conf], :be_user_module)
+  def user_module(assigns),
+    do: get_conf_val(assigns[:context][:be_user_ui_conf], :user_module)
 
   def local_edit_component(assigns),
     do: get_conf_val(assigns[:context][:be_user_ui_conf], :local_edit_component)
@@ -101,7 +101,7 @@ defmodule MavuBeUserUi.Live.EditComponent do
   end
 
   def get_changeset(model, params, assigns) when is_map(assigns) do
-    be_user_module(assigns).edit_changeset(model, params)
+    user_module(assigns).edit_changeset(model, params)
   end
 
   def return_path(socket) do
@@ -110,7 +110,7 @@ defmodule MavuBeUserUi.Live.EditComponent do
 
   def generate_default_rec(assigns) when is_map(assigns) do
     struct(
-      be_user_module(assigns),
+      user_module(assigns),
       %{
         email: "",
         hashed_password: Ecto.UUID.generate()

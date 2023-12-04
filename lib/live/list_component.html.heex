@@ -1,6 +1,5 @@
 <div id={"#{ @id }"}>
-
-  <%= live_component  MavuBeUserUi.Live.MavuList.SearchboxComponent , list: @items_filtered %>
+  <%= live_component(MavuBeUserUi.Live.MavuList.SearchboxComponent, list: @items_filtered) %>
 
   <div class="px-10 mt-8 border-[#ff0000]">
     <div class="flex flex-col ">
@@ -11,67 +10,80 @@
               <thead class="bg-gray-50">
                 <tr>
                   <%= for col <- @items_filtered.metadata.columns do %>
-                  <th class="px-6 py-3 text-xs font-bold tracking-wider text-left text-black ">
-                    <%= live_component  MavuBeUserUi.Live.MavuList.LabelComponent , list: @items_filtered, name: col.name %>
-                  </th> <% end %>
+                    <th class="px-6 py-3 text-xs font-bold tracking-wider text-left text-black ">
+                      <%= live_component(MavuBeUserUi.Live.MavuList.LabelComponent,
+                        list: @items_filtered,
+                        name: col.name
+                      ) %>
+                    </th>
+                  <% end %>
                   <th>&nbsp;</th>
                 </tr>
               </thead>
               <tbody class="bg-white divide-y divide-gray-200">
                 <%= for row <- @items_filtered.data  do %>
+                  <tr>
+                    <%= for col <- @items_filtered.metadata.columns do %>
+                      <%= case {col[:type], MavuList.get_colval(row,@items_filtered.conf,col.name), col.name} do %>
+                        <% {_,val,_} -> %>
+                          <td class="px-6 py-4 text-sm font-medium text-gray-900 whitespace-nowrap">
+                            <%= val %>
+                          </td>
+                      <% end %>
+                    <% end %>
+                    <td class="flex items-center h-12 space-x-3 text-gray-500">
+                      <.link
+                        class="inline-block"
+                        phx-click="edit_item"
+                        phx-value-id={row.id}
+                        phx-target={@myself}
+                      >
+                        <.icon name="hero-pencil"  class="w-5 h-5" />
+                      </.link>
 
-                <tr>
-                  <%= for col <- @items_filtered.metadata.columns do %>
-
-                  <%= case {col[:type], MavuList.get_colval(row,@items_filtered.conf,col.name), col.name} do %>
-                  <% {_,val,_} -> %>
-                  <td class="px-6 py-4 text-sm font-medium text-gray-900 whitespace-nowrap"><%= val  %></td>
-                  <% end %>
-                  <% end %>
-                  <td class="flex items-center h-12 space-x-3 text-gray-500">
-
-                
-
-                    <.link class="inline-block" phx-click="edit_item" phx-value-id={row.id} phx-target={@myself}><Heroicons.pencil outline class="w-5 h-5" /></.link>
-
-           
-
-                    <.link 
-                    phx-click="delete_item"
-                    phx-value-id={row.id}
-                    phx-target={@myself}
-                    data={[confirm: "Are you sure you want to delete item '#{row.id}' ?"]}
-                    class="inline-block"><Heroicons.trash outline class="w-5 h-5 " /></.link>
-
-                  </td>
-                </tr>
+                      <.link
+                        phx-click="delete_item"
+                        phx-value-id={row.id}
+                        phx-target={@myself}
+                        data={[confirm: "Are you sure you want to delete item '#{row.id}' ?"]}
+                        class="inline-block"
+                      >
+                        <.icon name="hero-trash"  class="w-5 h-5 " />
+                      </.link>
+                    </td>
+                  </tr>
                 <% end %>
               </tbody>
             </table>
           </div>
 
           <div class="mt-8 mb-4">
-
-            <.link class={"text-gray-400"} phx-click="add_item" phx-target={@myself} ><Heroicons.plus outline class="w-8 h-8 text-gray-400 hover:text-primary-500 inline-block" /></.link>
+            <.link class="text-gray-400" phx-click="add_item" phx-target={@myself}>
+              <.icon
+                name="hero-plus"
+                outline
+                class="inline-block w-8 h-8 text-gray-400 hover:text-primary-500"
+              />
+            </.link>
           </div>
         </div>
       </div>
     </div>
   </div>
 
-  <%= live_component  MavuBeUserUi.Live.MavuList.PaginationComponent , list: @items_filtered, class: "mx-8 mt-8 mb-4 " %>
+  <%= live_component(MavuBeUserUi.Live.MavuList.PaginationComponent,
+    list: @items_filtered,
+    class: "mx-8 mt-8 mb-4 "
+  ) %>
 
   <%= case @context.params["rec"] do %>
-
-  <% rec_id when is_binary(rec_id) -> %>
-
-  <%= live_component   MavuBeUserUi.Live.EditComponent,
-                  id: "be_user_detail",
-                  rec_id: rec_id,
-                  context: @context,
-                  base_path: @base_path
-    %>
-  <% _ -> %>
-
+    <% rec_id when is_binary(rec_id) -> %>
+      <%= live_component(MavuBeUserUi.Live.EditComponent,
+        id: "be_user_detail",
+        rec_id: rec_id,
+        context: @context,
+        base_path: @base_path
+      ) %>
+    <% _ -> %>
   <% end %>
 </div>
