@@ -39,9 +39,11 @@
                 <%= @init_password_link %>
               </a>
             <% else %>
+            <%= if @rec_id != "new" do %>
               <a href="#" phx-click="create_init_password_link" phx-target={"##{@id}"}>
                 ➜ create init-password-link
               </a>
+            <% end %>
             <% end %>
           </div>
         </.form>

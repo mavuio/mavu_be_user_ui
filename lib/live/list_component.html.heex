@@ -1,5 +1,11 @@
 <div id={"#{ @id }"}>
-  <%= live_component(MavuBeUserUi.Live.MavuList.SearchboxComponent, list: @items_filtered) %>
+
+
+   <.live_component
+    module={MyAppBe.MavuList.SearchboxComponent}
+    list={@items_filtered}
+    id="searchbox"
+  />
 
   <div class="px-10 mt-8 border-[#ff0000]">
     <div class="flex flex-col ">
@@ -11,10 +17,14 @@
                 <tr>
                   <%= for col <- @items_filtered.metadata.columns do %>
                     <th class="px-6 py-3 text-xs font-bold tracking-wider text-left text-black ">
-                      <%= live_component(MavuBeUserUi.Live.MavuList.LabelComponent,
-                        list: @items_filtered,
-                        name: col.name
-                      ) %>
+                         <.live_component
+                          module={MavuBeUserUi.Live.MavuList.LabelComponent}
+                          list={@items_filtered}
+                          name={col.name}
+                          id={"label_#{col.name}"}
+                        />
+
+
                     </th>
                   <% end %>
                   <th>&nbsp;</th>
@@ -38,7 +48,7 @@
                         phx-value-id={row.id}
                         phx-target={@myself}
                       >
-                        <MyAppBe.MyCoreComponents.icon name="hero-pencil"  class="w-5 h-5" />
+                        <.icon name="hero-pencil"  class="w-5 h-5" />
                       </.link>
 
                       <.link
@@ -48,7 +58,7 @@
                         data={[confirm: "Are you sure you want to delete item '#{row.id}' ?"]}
                         class="inline-block"
                       >
-                        <MyAppBe.MyCoreComponents.icon name="hero-trash"  class="w-5 h-5 " />
+                        <.icon name="hero-trash"  class="w-5 h-5 " />
                       </.link>
                     </td>
                   </tr>
@@ -59,7 +69,7 @@
 
           <div class="mt-8 mb-4">
             <.link class="text-gray-400" phx-click="add_item" phx-target={@myself}>
-              <MyAppBe.MyCoreComponents.icon
+              <.icon
                 name="hero-plus"
                 outline
                 class="inline-block w-8 h-8 text-gray-400 hover:text-primary-500"
@@ -71,19 +81,26 @@
     </div>
   </div>
 
-  <%= live_component(MavuBeUserUi.Live.MavuList.PaginationComponent,
-    list: @items_filtered,
-    class: "mx-8 mt-8 mb-4 "
-  ) %>
+   <.live_component
+    module={MyAppBe.MavuList.PaginationComponent}
+    list={@items_filtered}
+    class="mx-8 mt-8 mb-4"
+    id="paginate_list2"
+  />
+
 
   <%= case @context.params["rec"] do %>
     <% rec_id when is_binary(rec_id) -> %>
-      <%= live_component(MavuBeUserUi.Live.EditComponent,
-        id: "be_user_detail",
-        rec_id: rec_id,
-        context: @context,
-        base_path: @base_path
-      ) %>
+       <.live_component
+            module={MavuBeUserUi.Live.EditComponent}
+            id="be_user_detail"
+                rec_id={rec_id}
+                context={@context}
+                base_path={@base_path}
+            id="paginate_edit1"
+          />
+
+     
     <% _ -> %>
   <% end %>
 </div>
